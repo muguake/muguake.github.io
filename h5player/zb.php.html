@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+        <title>Aliplayer Functions</title>
+        <link rel="stylesheet" href="https://g.alicdn.com/de/prismplayer/2.16.0/skins/default/aliplayer-min.css"/>
+        <script type="text/javascript" charset="utf-8" src="https://g.alicdn.com/de/prismplayer/2.16.0/aliplayer-min.js"></script>
+        <!-- 请下载之后使用 -->
+        <script type="text/javascript" charset="utf-8" src="https://player.alicdn.com/aliplayer/presentation/js/aliplayercomponents.min.js"></script>
+    </head>
+    <body>
+        <style type="text/css">
+            body,html {
+                width: 100%;
+                height: 100%;
+                background: rgb(0 119 221);
+                padding: 0;
+                margin: 0;
+                overflow-x: hidden;
+                overflow-y: hidden
+            }
+
+            * {
+                margin: 0;
+                border: 0;
+                padding: 0;
+                text-decoration: none
+            }
+
+            .bodybg {
+                background: rgb(0 0 0 / 80%);
+                position: fixed;
+                z-index: 999990;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            .popup_box {
+                width: 400px;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+                margin: 0 auto;
+                background: #fff;
+                position: fixed;
+                left: 0;
+                right: 0;
+                top: 10px;
+                z-index: 999999;
+                color: #444
+            }
+
+            .popup_box h2 {
+                margin: 0;
+                font-weight: normal;
+                font-family: "Microsoft Yahei",Arial;
+                font-size: 16px;
+                border-bottom: 1px solid #ccc;
+                padding: 10px;
+                color: #ff0000;
+            }
+
+            .popup_box h2 .closepop {
+                float: right;
+                color: #ff0000;
+                cursor: pointer
+            }
+
+            .popup_box h2 .closepop:hover {
+                color: #00aff0
+            }
+
+            #tg_cont {
+                padding: 10px 15px 10px
+            }
+
+            .popup_box .popup_cont {
+                padding: 5px;
+                color: #444
+            }
+
+            .popup_box .popup_cont p {
+                line-height: 30px
+            }
+
+            #open_popup {
+                cursor: pointer
+            }
+
+            .prism-player .prism-big-play-btn {
+                position: absolute !important;
+                margin: 0px auto;
+                left: 0 !important;
+                right: 0 !important;
+                bottom: auto !important;
+                top: 40% !important;
+            }
+        </style>
+        <div id="player-con"></div>
+        <script>
+            var player = new Aliplayer({
+                id: "player-con",
+                "source": JSON.stringify({
+                    
+                    "原画": "https://edge-hls.doppiocdn.com/hls/127618919/master/127618919.m3u8"
+                }),
+                width: "100%",
+                height: "100%",
+                autoplay: true,
+                isLive: false,
+                components: [{
+                    name: 'QualityComponent',
+                    type: AliPlayerComponent.QualityComponent,
+                    args: [function(definition, desc) {
+                        console.log(definition + '-----' + desc)
+                    }
+                    ]
+                }]
+            },function(player) {
+                console.log("The player is created");
+
+                /* Register the sourceloaded of the player, query the resolution of the video, invoke the resolution component, and call the setCurrentQuality method to set the resolution. */
+                player.on('sourceloaded', function(params) {
+                    var paramData = params.paramData
+                    var desc = paramData.desc
+                    var definition = paramData.definition
+                    player.getComponent('QualityComponent').setCurrentQuality(desc, definition)
+                })
+            }
+            );
+        </script>
+    </body>
+</html>

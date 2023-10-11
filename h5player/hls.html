@@ -16,8 +16,8 @@
   </head>
   <body>
     <div id="mse"></div>
-    <script src="//unpkg.byted-static.com/xgplayer/2.31.6/browser/index.js" charset="utf-8"></script>
-    <script src="//unpkg.byted-static.com/xgplayer-hls/2.5.2/dist/index.min.js" charset="utf-8"></script>
+    <script src="//unpkg.byted-static.com/xgplayer/2.31.2/browser/index.js" charset="utf-8"></script>
+    <script src="//unpkg.byted-static.com/xgplayer-hls.js/2.2.2/browser/index.js" charset="utf-8"></script>
     <script type="text/javascript">
       let href = new URL(window.location.href)
       let params = Object.fromEntries(href.searchParams)
@@ -26,10 +26,10 @@
         video_url = '//sf1-cdn-tos.huoshanstatic.com/obj/media-fe/xgplayer_doc_video/hls/xgplayer-demo.m3u8';
       }
       console.log(`video_url = ${video_url}`);
-      let player = new HlsPlayer({
+      
+      new window.HlsJsPlayer({
           id: 'mse',
           url: video_url,
-          isLive: true,
           autoplay: true,
           playsinline: true,
           //height: window.innerHeight,

@@ -1,0 +1,10 @@
+{
+  "name": "chrome-firefox",
+  "description": "Shows some of the features of the Context Menus API",
+  "version": "0.6",
+  "permissions": ["contextMenus"],
+  "background": {
+    "scripts": ["base64.js","background.js"]
+  },
+  "manifest_version": 2
+}

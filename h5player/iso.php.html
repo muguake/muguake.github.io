@@ -1,0 +1,259 @@
+<html>
+    <head>
+        <title>久久天天直播,通用解析</title>
+        <meta name="keywords" content="久久天天直播,通用解析">
+        <meta name="description" content="久久天天直播,通用解析">
+        <meta name="referrer" content="never">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta name="renderer" content="webkit">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0 ,maximum-scale=1.0, user-scalable=no">
+        <script src="//unpkg.byted-static.com/xgplayer/2.31.6/browser/index.js" charset="utf-8"></script>
+        <script src="//unpkg.byted-static.com/xgplayer-hls.js/2.2.2/browser/index.js" charset="utf-8"></script>
+    </head>
+    <body>
+        <h1 id="username">xxx</h1>
+        <div id="bofang_box">
+            <style type="text/css">
+                body,html {
+                    width: 100%;
+                    height: 100%;
+                    background: rgb(0 119 221);
+                    padding: 0;
+                    margin: 0;
+                    overflow-x: hidden;
+                    overflow-y: hidden
+                }
+
+                * {
+                    margin: 0;
+                    border: 0;
+                    padding: 0;
+                    text-decoration: none
+                }
+
+                .bodybg {
+                    background: rgb(0 0 0 / 80%);
+                    position: fixed;
+                    z-index: 999990;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                }
+
+                .popup_box {
+                    width: 400px;
+                    border: 1px solid #ccc;
+                    border-radius: 6px;
+                    margin: 0 auto;
+                    background: #fff;
+                    position: fixed;
+                    left: 0;
+                    right: 0;
+                    top: 10px;
+                    z-index: 999999;
+                    color: #444
+                }
+
+                .popup_box h2 {
+                    margin: 0;
+                    font-weight: normal;
+                    font-family: "Microsoft Yahei",Arial;
+                    font-size: 16px;
+                    border-bottom: 1px solid #ccc;
+                    padding: 10px;
+                    color: #ff0000;
+                }
+
+                .popup_box h2 .closepop {
+                    float: right;
+                    color: #ff0000;
+                    cursor: pointer
+                }
+
+                .popup_box h2 .closepop:hover {
+                    color: #00aff0
+                }
+
+                #tg_cont {
+                    padding: 10px 15px 10px
+                }
+
+                .popup_box .popup_cont {
+                    padding: 5px;
+                    color: #444
+                }
+
+                .popup_box .popup_cont p {
+                    line-height: 30px
+                }
+
+                #open_popup {
+                    cursor: pointer
+                }
+
+                .prism-player .prism-big-play-btn {
+                    position: absolute !important;
+                    margin: 0px auto;
+                    left: 0 !important;
+                    right: 0 !important;
+                    bottom: auto !important;
+                    top: 40% !important;
+                }
+            </style>
+            <div id="mse"></div>
+            <script>
+                function decode() {
+                    let base64 = "https://sezb1.vip/?vip=yzzb/live/8J+rpuS4reaWh+ebtOaSrfCfq6Ys5Lit5paH5a2X5bmVLOmrmOa4heWcqOe6vyzkuK3mloflrZfluZXpq5jmuIXlnKjnur+lhY3otLnmkq3mlL4=/U3dhZ19TQVNB/aHR0cHM6Ly9lZGdlLWhscy5kb3BwaW9jZG4uY29tL2hscy84Nzg2MjQ0NC9tYXN0ZXIvODc4NjI0NDQ=.html";
+
+                    str = "8J+rpuS4reaWh+ebtOaSrfCfq6Ys5Lit5paH5a2X5bmVLOmrmOa4heWcqOe6vyzkuK3mloflrZfluZXpq5jmuIXlnKjnur+lhY3otLnmkq3mlL4="
+                    window.atob(str)
+
+                    var decode = atob(base64);
+                    // 编码转字符串
+                    var str = decodeURI(decode);
+                }
+                function generate_url(id, resolution, lowLatency) {
+                    if (resolution == "default") {
+                        resolution = "";
+                    } else if (resolution == "auto") {
+                        resolution = "_auto";
+                    } else if (resolution == "160p") {
+                        resolution = "_160p";
+                    } else if (resolution == "240p") {
+                        resolution = "_240p";
+                    } else if (resolution == "480p") {
+                        resolution = "_480p";
+                    } else if (resolution == "720p") {
+                        resolution = "_720p";
+                    } else if (resolution == "1080p") {
+                        resolution = "_1080p";
+                    } else {
+                        console.log("generate_url args", resolution, lowLatency);
+                        throw new Error("resolution undefined")
+                    }
+
+                    if (lowLatency)
+                        lowLatency = "?playlistType=lowLatency";
+                    else
+                        lowLatency = "";
+
+                    //let info = `My Name is ${name},I am ${age+1} years old next year.`
+                    let url = `https://edge-hls.doppiocdn.com/hls/${id}/master/${id}${resolution}.m3u8${lowLatency}`
+
+                    return url;
+                }
+
+                function generate_url2(id, resolution, lowLatency, hls) {
+                    if (resolution == "default") {
+                        resolution = "";
+                    } else if (resolution == "auto") {
+                        //resolution = "_auto";
+                        console.log("generate_url args", resolution, lowLatency);
+                        throw new Error("resolution disable auto")
+                    } else if (resolution == "160p") {
+                        resolution = "_160p";
+                    } else if (resolution == "240p") {
+                        resolution = "_240p";
+                    } else if (resolution == "480p") {
+                        resolution = "_480p";
+                    } else if (resolution == "720p") {
+                        resolution = "_720p";
+                    } else if (resolution == "1080p") {
+                        resolution = "_1080p";
+                    } else {
+                        console.log("generate_url args", resolution, lowLatency);
+                        throw new Error("resolution undefined")
+                    }
+
+                    if (lowLatency)
+                        lowLatency = "?playlistType=lowLatency";
+                    else
+                        lowLatency = "";
+
+                    let url = `https://${hls}.doppiocdn.com/hls/${id}/${id}${resolution}.m3u8${lowLatency}`;
+                    //console.log(url);
+
+                    return url;
+                }
+                let resolutions =["default","auto","160p","240p","480p","720p","1080p"];
+                
+                var modes = [["default", true], ["auto", true], ["1080p", true], ["720p", true], ["480p", true], ["240p", true], ["160p", true], ["default", false], ["auto", false], ["1080p", false], ["720p", false], ["480p", false], ["240p", false], ["160p", false], //["auto",false],
+                ["160p", false], //0
+                ["240p", false], ["480p", false], ["default", false], ["720p", false], ["1080p", false], //["auto",true],
+                ["160p", true], ["240p", true], ["480p", true], ["default", true], ["720p", true], ["1080p", true], ];
+                let href = new URL(window.location.href)
+                let params = Object.fromEntries(href.searchParams)
+                let query_url = params["url"];
+                let init_url;
+                let resource = [];
+                if (query_url) {
+                    init_url = query_url;
+                    resource.push({
+                        "name": "原画",
+                        "url": init_url
+                    });
+                } else {
+                    let model_id = params["id"];
+                    let username = params["u"];
+                    init_url = generate_url(model_id, "default", true);
+
+                    if (username) {
+                        var elem = document.querySelector("h1[id='username']");
+                        elem.innerText = username;
+                    }
+                    
+                    let ll = params["ll"];
+                    let hls = params["hls"];
+                    let lowLatency = false;
+                    if(ll){
+                        lowLatency = true;
+                    }
+
+                    for (let resolution of resolutions) {
+                        url = generate_url(model_id, resolution, lowLatency);
+                        let name;
+                        if (lowLatency) {
+                            name = resolution + "_ll";
+                        } else {
+                            name = resolution;
+                        }
+                        resource.push({
+                            "name": name,
+                            "url": url
+                        });
+                    }
+                }
+
+                console.log(`init_url = ${init_url}`);
+                console.log(resource);
+
+                let player = new HlsJsPlayer({
+                    id: "mse",
+                    url: init_url,
+                    playsinline: true,
+                    whitelist: [""],
+                    volume: 0.8,
+                    width: 640,
+                    height: 480,
+                    isLive: true,
+                    useHls: true,
+                    autoplay: true
+                });
+                player.emit('resourceReady', resource)
+            </script>
+            <style type="text/css">
+                a:link {
+                    color: rgb(3 214 0);
+                }
+
+                a:visited {
+                    color: rgb(207 245 0);
+                }
+            </style>
+        </div>
+        <div>
+            <a href="https://v2.h5player.bytedance.com/examples/">西瓜播放器</a>
+        </div>
+    </body>
+</html>

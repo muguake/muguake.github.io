@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+        <meta name="renderer" content="webkit">
+        <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width">
+        <title>天字篆书书法字典_天字篆书书法写法_天的篆书怎么写好看_天篆书书法图片 - 书法大师</title>
+        <meta name="Keywords" content="">
+        <meta name="Description" content=">
+        <meta name="applicable-device" content="pc,mobile"/>
+        <meta http-equiv="Cache-Control" content="no-transform"/>
+        <link rel="stylesheet" href="/img/style.css?ver=6.0.310" type="text/css" media="all"/>
+        <link rel="stylesheet" href="/img/font-awesome.css?ver=6.0.3" type="text/css" media="all"/>
+        <link rel="stylesheet" href="/img/style2.css?2024" type="text/css" media="all"/>
+    </head>
+    <body data-rsssl=1 class="post-template-default single single-post postid-24142 single-format-standard lang-cn el-boxed">
+        <div id="wrap">
+            <div class="wrap container">
+                <div class="main">
+                    <article id="post-24142" class="post-24142 post type-post status-publish format-standard has-post-thumbnail hentry category-anddown">
+                        <div class="entry">
+                            <div class="entry-content clearfix">
+                                 <form class="form-inline" role="form" method=get action="">
+                                    <div class="form-group" style="float:left;display:flex;width:100%">
+                                        <input type="text" class="form-control" id="zi" name="zi" placeholder="汉字">
+                                        <input type="text" class="form-control" id="zz" name="zz" placeholder="作者">
+                                        <select name="ziti" id="ziti" class="form-control">
+                                            <option value="1">楷书</option>
+                                            <option value="2">行书</option>
+                                            <option value="3">草书</option>
+                                            <option value="4">隶书</option>
+                                            <option value="10">六体</option>
+                                            <option value="5" selected>篆书</option>
+                                            <option value="7">碑刻</option>
+                                            <option value="8">篆刻</option>
+                                            <option value="9">敦煌</option>
+                                            <option value="12">印谱</option>
+                                            <option value="13">钢笔</option>
+                                            <option value="21">其他</option>
+                                        </select>
+                                        <button type="submit" class="btn btn-primary btn2">检 索</button>
+                                    </div>
+                                </form>
+                                
+                                
+                                <div id="shuti">
+                                书 体 : 
+                                </div>
+                                <div id="a1" name="a1">
+                                    <div class="clearfix"></div>
+                                    <div id="bmore" name="bmore">
+                                        <div style="clear:both;">
+                                        </div>
+                                    </div>
+                                </div>
+                                <h2 style="clear:both"></h2>
+                                <script src="/ajaxsf.js"></script>
+                            </div>
+                            
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+        
+
+        <script>
+function start(){
+    let hrefx = new URL(window.location.href)
+    let params = Object.fromEntries(hrefx.searchParams)
+    let zi = params["zi"];
+    let zz = params["zz"];
+    let ziti = params["ziti"];
+    let rrr = params["rrr"];
+    
+    if(zi && ziti){
+        var uni = zi.codePointAt(0);
+        var hexstr = uni.toString(16).toUpperCase();
+        console.log(hexstr);
+        ajax(hexstr,1, parseInt(ziti))
+        //ajax('5929',1,5)
+    }
+
+    var zi_el = document.querySelector("input#zi");
+    zi_el.value = zi;
+    var ziti_el = document.querySelector("select#ziti");
+    ziti_el.value = ziti;
+    
+    var sfds_style = [[0, "不限"],[1, "楷书"],[2, "行书"],[3, "草书"],[4, "隶书"],[5, "篆书"],[7, "碑刻"],[8, "篆刻"],[9, "敦煌"],[10, "六体"],[12, "印谱"],[13, "钢笔"],[21, "其他"]]
+    var span = document.createElement('span');
+    for(var i = 0; i < sfds_style.length; i++) {
+        var style = sfds_style[i];
+        const link = document.createElement('a');
+        var style_id = style[0]
+        var style_name = style[1]
+        if(style_id == 0){
+            link.href = `https://www.sfds.cn/${hexstr}/`;
+        }else{
+            link.href = `https://www.sfds.cn/${hexstr}/${style_id}/`;
+        }
+        link.innerText = style_name;
+        link.target="_blank"
+        link.style.paddingRight="10px"
+        span.appendChild(link);
+    }
+    
+    var yb = document.createElement('a');
+    yb.href = `https://www.sfds.cn/yb/${hexstr}/`;
+    yb.innerText = "演变";
+    yb.target="_blank"
+    span.appendChild(yb);
+    var shuti_el = document.querySelector("div#shuti");
+    shuti_el.appendChild(span);
+
+}
+
+start();
+        </script>
+    </body>
+</html>
